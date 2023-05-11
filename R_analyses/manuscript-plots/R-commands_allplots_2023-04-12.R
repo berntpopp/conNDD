@@ -21,7 +21,7 @@ library(config)			## used for config loading
 ## read config
 config_vars <- config::get(file = Sys.getenv("CONFIG_FILE"))
 ## set working directory
-setwd(paste0(config_vars$projectsdir, project_name, script_path))
+setwd(paste0(config_vars$projectsdir))
 
 # the file FileS2_conNDD-cohort.xlsx needs to be downloaded in current version from Zenodo 
 FileS2_location <- "data/FileS2_conNDD-cohort.xlsx"
