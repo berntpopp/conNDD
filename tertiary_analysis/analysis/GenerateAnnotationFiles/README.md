@@ -1,0 +1,1 @@
+This folder holds the commands to gerenarte the annotation files for SnpSift.
