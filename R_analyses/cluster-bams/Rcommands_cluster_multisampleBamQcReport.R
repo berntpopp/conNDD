@@ -7,6 +7,7 @@ library(tidyverse)
 library(readxl)
 library(broom)
 library(scales)
+library(config)			## used for config loading
 
 
 ##################################
