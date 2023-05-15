@@ -1,0 +1,77 @@
+# set work directory
+cd <inseert absolute path to your work directory>\PyMOL_analyses\DEGS1
+
+# load DEGS1 model
+load data/trRosetta/trRosetta_TR027389_DEGS1_NP_003667_model1_2020-12-28.pdb
+
+###########################
+## change settings
+# change background colour to white
+bg_color white
+
+# turn the sequence viewer on.
+set seq_view, 1
+
+# make helices look nicer
+set cartoon_fancy_helices, 1
+
+#################################
+## 
+select DEGS1, chain A
+color tv_green, DEGS1
+show surface, DEGS1
+set transparency, 0.7, DEGS1
+
+# select variant amino acid in DEGS1
+select Asn255, chain A & resi 255
+
+select Met37, chain A & resi 37
+select Asn113, chain A & resi 113
+select His132, chain A & resi 132
+select Arg133, chain A & resi 133
+select Asn189, chain A & resi 189
+select Ala280, chain A & resi 280
+
+select AA_literature, (Met37 + \
+Asn113 + \
+His132 + \
+Arg133 + \
+Asn189 + \
+Ala280)
+
+show spheres, Asn255
+color tv_red, Asn255
+
+show spheres, AA_literature
+color hotpink, AA_literature
+
+# set sphere_scale to 0.8
+set sphere_scale, 0.8, (all)
+
+# views for figure
+set_view (\
+     0.743023098,   -0.655703008,    0.134024262,\
+     0.421280682,    0.302636206,   -0.854948521,\
+     0.520036697,    0.691710472,    0.501102209,\
+    -0.000243343,    0.000011884, -223.209213257,\
+    22.725612640,   -7.670253277,  -26.464544296,\
+   178.622665405,  267.795745850,  -20.000000000 )
+
+## render png
+set ray_opaque_background, 1
+ray 1800,2000
+png results/Figure_DEGS1, dpi=300
+
+
+set_view (\
+     0.743023098,   -0.655703008,    0.134024262,\
+     0.421280682,    0.302636206,   -0.854948521,\
+     0.520036697,    0.691710472,    0.501102209,\
+    -0.000261016,   -0.000018354,  -66.827827454,\
+    16.024166107,  -12.799449921,  -33.420051575,\
+    22.242826462,  111.415946960,  -20.000000000 )
+
+## render png
+set ray_opaque_background, 1
+ray 2000,2000
+png results/Figure_DEGS1_small, dpi=300

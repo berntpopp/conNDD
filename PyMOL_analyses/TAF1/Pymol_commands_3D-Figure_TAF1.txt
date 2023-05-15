@@ -1,0 +1,104 @@
+# set work directory
+cd <inseert absolute path to your work directory>\PyMOL_analyses\TAF1
+
+# load TAF1 protein
+load data/5fur.pdb
+
+###########################
+## change settings
+# change background colour to white
+bg_color white
+
+# turn the sequence viewer on.
+set seq_view, 1
+
+# make helices look nicer
+set cartoon_fancy_helices, 1
+
+
+#################################
+#select TAF1 (chain G)
+select TAF1, chain G
+color tv_green, TAF1
+show surface, TAF1
+set transparency, 0.7, TAF1
+
+# select DNA (chain E and F)
+select DNA1, chain E 
+show sticks, DNA1
+color tv_yellow, DNA1
+
+select DNA2, chain F 
+show sticks, DNA2
+color palecyan, DNA2
+
+
+# selecte irrelevant chains
+select rest, chain A | chain B | chain C | chain D | chain H | chain I | chain J | chain K  | chain L
+color grey70, rest
+hide cartoon, rest
+show surface, rest
+
+# select variant amino acid in TAF1 (positions crosschecked in mutalyzer)
+select variant, chain G & resi 864
+show spheres, variant
+color tv_red, variant
+
+# set sphere_scale to 0.8
+set sphere_scale, 0.8, (all)
+
+# select interaction partner of variant
+#select interaction, chain F & resi 95
+#color tv_yellow, interaction
+
+
+
+# views for figure
+set_view (\
+    -0.629676104,   -0.235654384,    0.740253150,\
+     0.489465535,    0.619594634,    0.613603950,\
+    -0.603260040,    0.748703122,   -0.274800181,\
+    -0.002617180,   -0.003689080, -358.052612305,\
+   183.175308228,  296.216064453,  189.794158936,\
+   172.394866943,  545.572021484,  -20.000000000 )
+set ray_opaque_background, 1
+ray
+png results/Figure_published2, dpi=300
+
+set_view (\
+    -0.545649588,   -0.418011546,    0.726310134,\
+     0.166100919,    0.795552433,    0.582656264,\
+    -0.821383834,    0.438568711,   -0.364662141,\
+    -0.000562459,   -0.003762830, -100.907623291,\
+   226.899169922,  281.817749023,  170.851959229,\
+  -199.145004272,  401.861053467,  -20.000000000 )
+set ray_opaque_background, 1
+ray
+png results/Figure_published1, dpi=300
+
+set_view (\
+    -0.510383368,    0.074596420,    0.856694400,\
+     0.617651284,    0.724941790,    0.304859638,\
+    -0.598322690,    0.684741378,   -0.416080713,\
+     0.000547424,   -0.006740913, -422.097717285,\
+   213.630157471,  238.393646240,  219.182708740,\
+   236.467864990,  609.645019531,  -20.000000000 )
+set ray_opaque_background, 1
+ray
+png results/Figure_published3, dpi=300
+
+set_view (\
+    -0.570932806,   -0.466351360,    0.675682604,\
+    -0.058441207,    0.843990862,    0.533145189,\
+    -0.818911910,    0.264901489,   -0.509117007,\
+     0.000963904,   -0.004281425, -100.921989441,\
+   223.985443115,  283.053466797,  169.085845947,\
+  -199.145004272,  401.861053467,  -20.000000000 )
+set ray_opaque_background, 1
+ray
+png results/Figure_published4, dpi=300
+
+## render png
+set ray_opaque_background, 1
+ray 2200,2000
+png results/Figure_published1, dpi=300
