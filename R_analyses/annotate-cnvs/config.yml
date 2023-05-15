@@ -1,0 +1,3 @@
+# This is a dummy config file for the shell scripts used, values in "<>" need to be replaced
+default:
+  projectsdir: "<replace with PROJECT_DIRECTORY>"
